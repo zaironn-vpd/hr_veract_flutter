@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hr_veract/pages/dashboard.dart';
-import 'package:hr_veract/pages/employees.dart';
+import 'package:hr_veract/pages/employee_page.dart';
 
 class BottomNavigation extends StatefulWidget {
   final int selectedIndex;

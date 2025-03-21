@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatefulWidget {
-  const CustomSearchBar({super.key});
+  final double width;
+  final double textSize;
+  const CustomSearchBar({
+    super.key,
+    required this.width,
+    required this.textSize,
+  });
 
   @override
   SearchBar createState() => SearchBar();
@@ -10,13 +16,14 @@ class CustomSearchBar extends StatefulWidget {
 class SearchBar extends State<CustomSearchBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
+    return SizedBox(
+      width: widget.width,
       child: TextField(
         style: TextStyle(
           fontFamily: 'PoppinsRegular',
           color: Color.fromRGBO(44, 62, 80, 1),
           letterSpacing: 2,
+          fontSize: widget.textSize,
         ),
         decoration: InputDecoration(
           filled: true,
