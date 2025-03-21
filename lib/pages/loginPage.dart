@@ -24,7 +24,13 @@ class UserLoginPage extends StatelessWidget {
                 fontFamily: 'PoppinsBold',
               ),
             ),
-            InputField(),
+            InputField(
+              textFieldHeight: 50,
+              textFieldWidth: 300,
+              textHint: "User Name",
+              textSize: 26,
+            ),
+            SizedBox(height: 20),
             InputFieldObscure(),
             CustomButton(
               onPressed: () {

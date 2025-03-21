@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
-  const InputField({super.key});
+  final double textFieldWidth;
+  final double textFieldHeight;
+  final double textSize;
+  final String textHint;
+
+  const InputField({
+    super.key,
+    required this.textFieldHeight,
+    required this.textFieldWidth,
+    required this.textSize,
+    required this.textHint,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      margin: EdgeInsets.only(top: 30, bottom: 10),
+    return SizedBox(
+      width: textFieldWidth,
+      height: textFieldHeight,
       child: TextField(
         style: TextStyle(
           fontFamily: 'PoppinsRegular',
@@ -17,11 +28,12 @@ class InputField extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: Color.fromRGBO(248, 249, 250, 1),
-          hintText: 'User Name',
+          hintText: textHint,
           hintStyle: TextStyle(
             fontFamily: 'PoppinsRegular',
             color: Color.fromRGBO(108, 117, 125, 1),
             letterSpacing: 2,
+            fontSize: textSize,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.0),

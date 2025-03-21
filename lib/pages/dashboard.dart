@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:hr_veract/custom_widgets/custom_bottom_nav_bar.dart';
 import 'package:hr_veract/custom_widgets/custom_dashboard_container.dart';
-import 'package:hr_veract/pages/dashboard.dart';
-import 'package:hr_veract/pages/employee_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -18,7 +15,7 @@ class DashboardPageDesign extends State<DashboardPage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),
       body: Padding(
-        padding: EdgeInsets.only(top: 30),
+        padding: EdgeInsets.symmetric(vertical: 30),
         child: SingleChildScrollView(
           child: LayoutBuilder(
             builder:
