@@ -25,10 +25,9 @@ class UserLoginPage extends StatelessWidget {
               ),
             ),
             InputField(
-              textFieldHeight: 50,
               textFieldWidth: 300,
               textHint: "User Name",
-              textSize: 26,
+              textSize: 16,
             ),
             SizedBox(height: 20),
             InputFieldObscure(),
@@ -36,6 +35,10 @@ class UserLoginPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/dashboard');
               },
+              buttonHeight: 35,
+              buttonText: "Login",
+              buttonTextSize: 14,
+              buttonWidth: 135,
             ),
           ],
         ),

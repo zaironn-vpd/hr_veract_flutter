@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
   final double textFieldWidth;
-  final double textFieldHeight;
   final double textSize;
   final String textHint;
 
   const InputField({
     super.key,
-    required this.textFieldHeight,
     required this.textFieldWidth,
     required this.textSize,
     required this.textHint,
@@ -16,9 +14,8 @@ class InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: textFieldWidth,
-      height: textFieldHeight,
       child: TextField(
         style: TextStyle(
           fontFamily: 'PoppinsRegular',
@@ -48,6 +45,7 @@ class InputField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.black),
           ),
           contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          isDense: false,
         ),
       ),
     );

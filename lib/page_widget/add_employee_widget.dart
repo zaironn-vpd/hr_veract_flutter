@@ -32,7 +32,6 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                 ),
               ),
               InputField(
-                textFieldHeight: 50,
                 textFieldWidth: 100,
                 textHint: "First Name",
                 textSize: 10,

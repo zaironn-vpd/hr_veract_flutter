@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 class CustomDashboardContainer extends StatefulWidget {
   final String containerText;
   final String containerValue;
-  final Icon containerIcon;
-  final double containerMaxWidth;
-  final double containerIfWidth;
-  final double containerElseWidth;
-  final double containerConstMaxWidth;
+  final double containerWidth;
+  final double titleTextSize;
+  final double valueTextSize;
+  final double containerHeight;
+  final Color? titleTextColor;
 
   const CustomDashboardContainer({
     super.key,
     required this.containerText,
     required this.containerValue,
-    required this.containerIcon,
-    required this.containerMaxWidth,
-    required this.containerIfWidth,
-    required this.containerElseWidth,
-    required this.containerConstMaxWidth,
+    required this.containerWidth,
+    required this.titleTextSize,
+    required this.valueTextSize,
+    required this.containerHeight,
+    required this.titleTextColor,
   });
 
   @override
@@ -28,41 +28,39 @@ class DashboardContainer extends State<CustomDashboardContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:
-          widget.containerConstMaxWidth >= widget.containerMaxWidth
-              ? widget.containerIfWidth
-              : widget.containerElseWidth,
-      height: 250,
-      padding: EdgeInsets.all(15),
-      margin: EdgeInsets.all(20),
+      width: widget.containerWidth,
+      height: widget.containerHeight,
+      padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
         borderRadius: BorderRadius.circular(8),
         color: Color.fromRGBO(248, 249, 250, 1),
+        boxShadow: [
+          BoxShadow(color: Colors.black26, blurRadius: 5, offset: Offset(0, 0)),
+        ],
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          SizedBox(height: 10),
           Text(
             widget.containerText,
             style: TextStyle(
               fontFamily: 'PoppinsBold',
               fontWeight: FontWeight.bold,
-              fontSize: 24,
+              fontSize: widget.titleTextSize,
               letterSpacing: 2,
+              color: widget.titleTextColor,
             ),
           ),
+          SizedBox(height: 25),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 20,
             children: [
-              widget.containerIcon,
               Text(
                 widget.containerValue,
                 style: TextStyle(
                   fontFamily: 'PoppinsBold',
                   fontWeight: FontWeight.bold,
-                  fontSize: 60,
+                  fontSize: widget.valueTextSize,
                   letterSpacing: 2,
                 ),
               ),
