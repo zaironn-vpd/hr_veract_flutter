@@ -33,7 +33,7 @@ class UserLoginPage extends StatelessWidget {
             InputFieldObscure(),
             CustomButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/dashboard');
+                Navigator.pushReplacementNamed(context, '/dashboard');
               },
               buttonHeight: 35,
               buttonText: "Login",

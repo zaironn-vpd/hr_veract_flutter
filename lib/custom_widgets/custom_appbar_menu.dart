@@ -32,12 +32,10 @@ class CustomAppbarMenu extends StatelessWidget implements PreferredSizeWidget {
           padding: EdgeInsets.only(right: 15),
           child: GestureDetector(
             onTap: () {
-              print("Profile image tapped!");
+              Navigator.pushNamed(context, '/profile');
             },
             child: CircleAvatar(
-              backgroundImage: AssetImage(
-                'images/profilePic.jpg',
-              ), // Change to your image
+              backgroundImage: AssetImage('images/profilePic.jpg'),
               radius: 18,
             ),
           ),

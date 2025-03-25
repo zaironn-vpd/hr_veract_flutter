@@ -102,11 +102,12 @@ class _MyDataSource extends DataTableSource {
             MaterialPageRoute(
               builder:
                   (context) => EmployeesProfileWidget(
-                    employeeCode: "${_data[index]['code']}",
+                    // employeeCode: "${_data[index]['code']}",
                     containerWidth: containerWidth,
                     dataTextSize: dataTextSize,
                     headerTextSize: headerTextSize,
                     dataCellWidth: dataCellWidth,
+                    dataCellWidthLeft: 2,
                   ),
             ),
           );

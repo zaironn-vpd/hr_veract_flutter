@@ -8,6 +8,7 @@ class CustomEmployeeBenefitsData extends StatefulWidget {
   final String tin;
   final String pagibigMID;
   final String philNumber;
+  final double dataCellWidthLeft;
 
   const CustomEmployeeBenefitsData({
     super.key,
@@ -18,6 +19,7 @@ class CustomEmployeeBenefitsData extends StatefulWidget {
     required this.tin,
     required this.pagibigMID,
     required this.philNumber,
+    required this.dataCellWidthLeft,
   });
 
   @override
@@ -52,10 +54,13 @@ class _CustomEmployeeProfileDataState
       columns: [
         DataColumn(
           label: Expanded(
-            child: Text(
-              "Statutory Numbers",
-              overflow: TextOverflow.visible,
-              textAlign: TextAlign.left,
+            child: SizedBox(
+              width: 10,
+              child: Text(
+                "Statutory Numbers",
+                overflow: TextOverflow.visible,
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
         ),
@@ -63,7 +68,7 @@ class _CustomEmployeeProfileDataState
           label: Expanded(
             child: Text(
               "",
-              overflow: TextOverflow.visible,
+              overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.left,
             ),
           ),
@@ -72,7 +77,12 @@ class _CustomEmployeeProfileDataState
       rows: [
         DataRow(
           cells: [
-            DataCell(Text("SSS Number:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("SSS Number:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -83,7 +93,9 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("Tin:")),
+            DataCell(
+              SizedBox(width: widget.dataCellWidthLeft, child: Text("Tin:")),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -94,7 +106,12 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("Pag-ibig Funds MID:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Pag-ibig Funds MID:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -105,7 +122,12 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("PhilHealth Number:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("PhilHealth Number:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,

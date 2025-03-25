@@ -11,6 +11,7 @@ class CustomEmployeePersonalData extends StatefulWidget {
   final String email;
   final String phoneNumber;
   final String employeeCode;
+  final double dataCellWidthLeft;
 
   const CustomEmployeePersonalData({
     super.key,
@@ -24,6 +25,7 @@ class CustomEmployeePersonalData extends StatefulWidget {
     required this.email,
     required this.phoneNumber,
     required this.employeeCode,
+    required this.dataCellWidthLeft,
   });
 
   @override
@@ -58,19 +60,25 @@ class _CustomEmployeeProfileDataState
       columns: [
         DataColumn(
           label: Expanded(
-            child: Text(
-              "Personal Information",
-              overflow: TextOverflow.visible,
-              textAlign: TextAlign.left,
+            child: SizedBox(
+              width: 50,
+              child: Text(
+                "Personal Information",
+                overflow: TextOverflow.visible,
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
         ),
         DataColumn(
           label: Expanded(
-            child: Text(
-              "",
-              overflow: TextOverflow.visible,
-              textAlign: TextAlign.left,
+            child: SizedBox(
+              width: 100,
+              child: Text(
+                "",
+                overflow: TextOverflow.visible,
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
         ),
@@ -78,7 +86,12 @@ class _CustomEmployeeProfileDataState
       rows: [
         DataRow(
           cells: [
-            DataCell(Text("Full Name:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Full Name:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -89,7 +102,12 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("Birth Date:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Birth Date:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -100,7 +118,9 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("Gender:")),
+            DataCell(
+              SizedBox(width: widget.dataCellWidthLeft, child: Text("Gender:")),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -111,7 +131,12 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("Address:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Address:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -122,7 +147,9 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("Email:")),
+            DataCell(
+              SizedBox(width: widget.dataCellWidthLeft, child: Text("Email:")),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -133,7 +160,12 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("Phone Number:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Phone Number:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -144,7 +176,12 @@ class _CustomEmployeeProfileDataState
         ),
         DataRow(
           cells: [
-            DataCell(Text("Employee Code:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Employee Code:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,

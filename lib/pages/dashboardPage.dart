@@ -16,19 +16,23 @@ class _DashboardPageState extends State<Dashboardpage> {
       builder: (context, sizingInformation) {
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
           return DashboardWidget(
+            screenWidth: 280,
             containerWidth: 135,
             titleTextSize: 12,
             valueTextSize: 10,
             buttonWidth: 135,
-            buttonTextSize: 12,
+            buttonTextSize: 10,
+            attendanceChartWidth: 275,
           );
         } else {
           return DashboardWidget(
+            screenWidth: 510,
             containerWidth: 250,
             titleTextSize: 14,
             valueTextSize: 12,
             buttonWidth: 250,
-            buttonTextSize: 14,
+            buttonTextSize: 12,
+            attendanceChartWidth: 510,
           );
         }
       },

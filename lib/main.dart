@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/page_widget/add_employee_widget.dart';
+import 'package:hr_veract/pages/attendance_page.dart';
 import 'package:hr_veract/pages/dashboardPage.dart';
 import 'package:hr_veract/pages/employee_page.dart';
+import 'package:hr_veract/pages/employee_profile_page.dart';
 import 'package:hr_veract/pages/loginPage.dart';
+import 'package:hr_veract/pages/memo_page.dart';
 
 void main() {
   runApp(
@@ -13,7 +15,9 @@ void main() {
         '/': (context) => UserLoginPage(),
         '/dashboard': (context) => Dashboardpage(),
         '/employees': (context) => EmployeePage(),
-        '/add_employees': (context) => AddEmployeeWidget(),
+        '/profile': (context) => EmployeeProfilePage(),
+        '/memo': (context) => MemoPage(),
+        '/attendance': (context) => AttendancePage(),
       },
     ),
   );

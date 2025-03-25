@@ -6,19 +6,19 @@ import 'package:hr_veract/custom_widgets/custom_employee_personal_data.dart';
 import 'package:hr_veract/custom_widgets/custom_employee_work_data.dart';
 
 class EmployeesProfileWidget extends StatelessWidget {
-  final String employeeCode;
   final double headerTextSize;
   final double dataTextSize;
   final double dataCellWidth;
   final double containerWidth;
+  final double dataCellWidthLeft;
 
   const EmployeesProfileWidget({
     super.key,
-    required this.employeeCode,
     required this.headerTextSize,
     required this.dataTextSize,
     required this.containerWidth,
     required this.dataCellWidth,
+    required this.dataCellWidthLeft,
   });
 
   @override
@@ -29,7 +29,7 @@ class EmployeesProfileWidget extends StatelessWidget {
     String gender = "Male";
     String email = "johndoe@example.com";
     String phoneNumber = "+63 912 345 6789";
-    String eCode = employeeCode;
+    String eCode = "EMP001";
     String address = "123 Main Street, Makati City, Philippines";
 
     // Work Data
@@ -108,6 +108,7 @@ class EmployeesProfileWidget extends StatelessWidget {
                     CustomEmployeeProfileContainer(
                       containerWidth: containerWidth,
                       child: CustomEmployeePersonalData(
+                        dataCellWidthLeft: dataCellWidthLeft,
                         headerTextSize: headerTextSize,
                         dataTextSize: dataTextSize,
                         dataCellWidth: dataCellWidth,
@@ -124,6 +125,7 @@ class EmployeesProfileWidget extends StatelessWidget {
                     CustomEmployeeProfileContainer(
                       containerWidth: containerWidth,
                       child: CustomEmployeeWorkData(
+                        dataCellWidthLeft: dataCellWidthLeft,
                         headerTextSize: headerTextSize,
                         dataTextSize: dataTextSize,
                         dataCellWidth: dataCellWidth,
@@ -140,6 +142,7 @@ class EmployeesProfileWidget extends StatelessWidget {
                     CustomEmployeeProfileContainer(
                       containerWidth: containerWidth,
                       child: CustomEmployeeBenefitsData(
+                        dataCellWidthLeft: dataCellWidthLeft,
                         headerTextSize: headerTextSize,
                         dataTextSize: dataTextSize,
                         dataCellWidth: dataCellWidth,

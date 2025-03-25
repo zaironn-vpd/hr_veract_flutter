@@ -11,6 +11,7 @@ class CustomEmployeeWorkData extends StatefulWidget {
   final String employeeStatus;
   final String workSchedule;
   final String hiredDate;
+  final double dataCellWidthLeft;
 
   const CustomEmployeeWorkData({
     super.key,
@@ -24,6 +25,7 @@ class CustomEmployeeWorkData extends StatefulWidget {
     required this.employeeStatus,
     required this.workSchedule,
     required this.hiredDate,
+    required this.dataCellWidthLeft,
   });
 
   @override
@@ -57,19 +59,25 @@ class _CustomEmployeeProfileDataState extends State<CustomEmployeeWorkData> {
       columns: [
         DataColumn(
           label: Expanded(
-            child: Text(
-              "Work Format",
-              overflow: TextOverflow.visible,
-              textAlign: TextAlign.left,
+            child: SizedBox(
+              width: 50,
+              child: Text(
+                "Work Format",
+                overflow: TextOverflow.visible,
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
         ),
         DataColumn(
           label: Expanded(
-            child: Text(
-              "",
-              overflow: TextOverflow.visible,
-              textAlign: TextAlign.left,
+            child: SizedBox(
+              width: 100,
+              child: Text(
+                "",
+                overflow: TextOverflow.visible,
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
         ),
@@ -77,7 +85,12 @@ class _CustomEmployeeProfileDataState extends State<CustomEmployeeWorkData> {
       rows: [
         DataRow(
           cells: [
-            DataCell(Text("Department:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Department:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -88,7 +101,12 @@ class _CustomEmployeeProfileDataState extends State<CustomEmployeeWorkData> {
         ),
         DataRow(
           cells: [
-            DataCell(Text("Position:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Position:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -99,7 +117,12 @@ class _CustomEmployeeProfileDataState extends State<CustomEmployeeWorkData> {
         ),
         DataRow(
           cells: [
-            DataCell(Text("Manager:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Manager:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -110,7 +133,12 @@ class _CustomEmployeeProfileDataState extends State<CustomEmployeeWorkData> {
         ),
         DataRow(
           cells: [
-            DataCell(Text("Supervisor:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Supervisor:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -121,7 +149,12 @@ class _CustomEmployeeProfileDataState extends State<CustomEmployeeWorkData> {
         ),
         DataRow(
           cells: [
-            DataCell(Text("Employee Status:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Employee Status:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -132,7 +165,12 @@ class _CustomEmployeeProfileDataState extends State<CustomEmployeeWorkData> {
         ),
         DataRow(
           cells: [
-            DataCell(Text("Work Schedule:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Work Schedule:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
@@ -143,7 +181,12 @@ class _CustomEmployeeProfileDataState extends State<CustomEmployeeWorkData> {
         ),
         DataRow(
           cells: [
-            DataCell(Text("Hired Date:")),
+            DataCell(
+              SizedBox(
+                width: widget.dataCellWidthLeft,
+                child: Text("Hired Date:"),
+              ),
+            ),
             DataCell(
               SizedBox(
                 width: widget.dataCellWidth,
