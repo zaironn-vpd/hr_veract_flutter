@@ -193,6 +193,13 @@ class DashboardWidgetState extends State<DashboardWidget> {
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(248, 249, 250, 1),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 5,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
                       ),
                       child: CustomChart(
                         chartTitle: "Attendance Chart",
@@ -294,6 +301,13 @@ class DashboardWidgetState extends State<DashboardWidget> {
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(248, 249, 250, 1),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 5,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
                       ),
                       child: CustomChart(
                         chartTitle: "Contribution Chart",

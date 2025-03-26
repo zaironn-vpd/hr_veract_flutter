@@ -62,7 +62,7 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/task');
               },
             ),
             ListTile(
@@ -77,7 +77,7 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/files');
               },
             ),
             ListTile(
@@ -92,7 +92,7 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/contribution');
               },
             ),
             ListTile(
@@ -137,7 +137,7 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/pan');
               },
             ),
             ListTile(
@@ -152,7 +152,7 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/paycheck');
               },
             ),
             ListTile(

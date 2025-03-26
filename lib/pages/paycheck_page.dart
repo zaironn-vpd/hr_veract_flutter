@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/page_widget/attendance_widget.dart';
+import 'package:hr_veract/page_widget/paycheck_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class AttendancePage extends StatefulWidget {
-  const AttendancePage({super.key});
+class PaycheckPage extends StatefulWidget {
+  const PaycheckPage({super.key});
 
   @override
-  State<AttendancePage> createState() => _AttendancePageState();
+  State<PaycheckPage> createState() => _PaycheckPageState();
 }
 
-class _AttendancePageState extends State<AttendancePage> {
+class _PaycheckPageState extends State<PaycheckPage> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
-          return AttendanceWidget(
+          return PaycheckWidget(
             pageTitleWidth: 120,
             pageTitleTextSize: 14,
             screenWidth: MediaQuery.of(context).size.width,
@@ -25,7 +25,7 @@ class _AttendancePageState extends State<AttendancePage> {
             searchBarWidth: MediaQuery.of(context).size.width * .5,
           );
         } else {
-          return AttendanceWidget(
+          return PaycheckWidget(
             pageTitleWidth: 200,
             pageTitleTextSize: 18,
             screenWidth: MediaQuery.of(context).size.width,

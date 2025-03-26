@@ -8,6 +8,7 @@ class CustomDashboardContainer extends StatefulWidget {
   final double valueTextSize;
   final double containerHeight;
   final Color? titleTextColor;
+  final double gap;
 
   const CustomDashboardContainer({
     super.key,
@@ -17,7 +18,8 @@ class CustomDashboardContainer extends StatefulWidget {
     required this.titleTextSize,
     required this.valueTextSize,
     required this.containerHeight,
-    required this.titleTextColor,
+    this.titleTextColor = const Color.fromRGBO(44, 62, 80, 1),
+    this.gap = 25,
   });
 
   @override
@@ -50,8 +52,9 @@ class DashboardContainer extends State<CustomDashboardContainer> {
               letterSpacing: 2,
               color: widget.titleTextColor,
             ),
+            textAlign: TextAlign.center,
           ),
-          SizedBox(height: 25),
+          SizedBox(height: widget.gap),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

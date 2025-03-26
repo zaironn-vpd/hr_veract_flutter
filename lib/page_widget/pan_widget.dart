@@ -2,11 +2,12 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:hr_veract/custom_widgets/custom_appbar_drawer.dart';
 import 'package:hr_veract/custom_widgets/custom_appbar_menu.dart';
+import 'package:hr_veract/custom_widgets/custom_button.dart';
 import 'package:hr_veract/custom_widgets/custom_paginated_table.dart';
 import 'package:hr_veract/custom_widgets/custom_popup_dialog.dart';
 import 'package:hr_veract/custom_widgets/custom_search_bar.dart';
 
-class AttendanceWidget extends StatefulWidget {
+class PanWidget extends StatefulWidget {
   final double screenWidth;
   final double headerTextSize;
   final double dataTextSize;
@@ -15,7 +16,7 @@ class AttendanceWidget extends StatefulWidget {
   final double pageTitleTextSize;
   final double pageTitleWidth;
 
-  const AttendanceWidget({
+  const PanWidget({
     super.key,
     required this.screenWidth,
     required this.headerTextSize,
@@ -27,10 +28,10 @@ class AttendanceWidget extends StatefulWidget {
   });
 
   @override
-  State<AttendanceWidget> createState() => _AttendanceWidgetState();
+  State<PanWidget> createState() => _PanWidgetState();
 }
 
-class _AttendanceWidgetState extends State<AttendanceWidget> {
+class _PanWidgetState extends State<PanWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +56,7 @@ class _AttendanceWidgetState extends State<AttendanceWidget> {
                         child: SizedBox(
                           width: widget.pageTitleWidth,
                           child: Text(
-                            'Attendance Page',
+                            'Personal Action Notice Page',
                             style: TextStyle(
                               fontFamily: 'PoppinsBold',
                               fontWeight: FontWeight.bold,
@@ -76,9 +77,10 @@ class _AttendanceWidgetState extends State<AttendanceWidget> {
                   ),
                   SizedBox(height: 20),
                   CustomPaginatedTable(
+                    columnSpacing: 15,
                     columns: [
                       DataColumn2(
-                        size: ColumnSize.M,
+                        size: ColumnSize.S,
                         label: SizedBox(
                           child: Text(
                             "DATE",
@@ -98,10 +100,10 @@ class _AttendanceWidgetState extends State<AttendanceWidget> {
                         ),
                       ),
                       DataColumn2(
-                        size: ColumnSize.M,
+                        size: ColumnSize.L,
                         label: SizedBox(
                           child: Text(
-                            "STATUS",
+                            "SUBJECT",
                             overflow: TextOverflow.visible,
                             textAlign: TextAlign.left,
                           ),
@@ -125,27 +127,17 @@ class _AttendanceWidgetState extends State<AttendanceWidget> {
 
 class _MyDataSource extends DataTableSource {
   final BuildContext context;
-  // final double headerTextSize;
-  // final double dataTextSize;
-  // final double containerWidth;
-  // final double dataCellWidth;
 
   final List<Map<String, String>> _data = List.generate(
     50,
     (index) => {
       "DATE": "March $index, 2025",
       "EMPLOYEE": "John, Doe",
-      "STATUS": "On-time",
+      "STATUS": "Performance Review",
     },
   );
 
-  _MyDataSource(
-    this.context,
-    // this.headerTextSize,
-    // this.dataTextSize,
-    // this.containerWidth,
-    // this.dataCellWidth,
-  );
+  _MyDataSource(this.context);
 
   @override
   DataRow? getRow(int index) {
@@ -161,7 +153,6 @@ class _MyDataSource extends DataTableSource {
         DataCell(Text(row["DATE"]!)),
         DataCell(Text(row["EMPLOYEE"]!)),
         DataCell(Text(row["STATUS"]!)),
-        // DataCell(Text(row["STATUS"]!)),
       ],
     );
   }
@@ -217,7 +208,7 @@ void _showPopup(BuildContext context) {
           ),
           SizedBox(height: 5),
           Text(
-            "Time In:",
+            "Subject:",
             style: TextStyle(
               fontFamily: "PoppinsBold",
               fontWeight: FontWeight.bold,
@@ -226,7 +217,7 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "9:00",
+            "Performance Review",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
@@ -235,7 +226,7 @@ void _showPopup(BuildContext context) {
           ),
           SizedBox(height: 5),
           Text(
-            "Time out:",
+            "Effective Date:",
             style: TextStyle(
               fontFamily: "PoppinsBold",
               fontWeight: FontWeight.bold,
@@ -244,25 +235,7 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "6:00",
-            style: TextStyle(
-              fontFamily: "PoppinsRegular",
-              letterSpacing: 2,
-              fontSize: 15,
-            ),
-          ),
-          SizedBox(height: 5),
-          Text(
-            "Duration:",
-            style: TextStyle(
-              fontFamily: "PoppinsBold",
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-              fontSize: 15,
-            ),
-          ),
-          Text(
-            "8",
+            "Februrary 7, 2025",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
@@ -280,11 +253,23 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "On time",
+            "Effective",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
               fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 15),
+          Center(
+            child: CustomButton(
+              onPressed: () {
+                print('pressed');
+              },
+              buttonText: 'Download',
+              buttonHeight: 25,
+              buttonWidth: 100,
+              buttonTextSize: 12,
             ),
           ),
         ],

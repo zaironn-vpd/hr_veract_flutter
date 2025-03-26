@@ -6,7 +6,7 @@ class Dashboardpage extends StatefulWidget {
   const Dashboardpage({super.key});
 
   @override
-  _DashboardPageState createState() => _DashboardPageState();
+  State<Dashboardpage> createState() => _DashboardPageState();
 }
 
 class _DashboardPageState extends State<Dashboardpage> {

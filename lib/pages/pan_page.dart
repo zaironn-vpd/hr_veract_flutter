@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/page_widget/attendance_widget.dart';
+import 'package:hr_veract/page_widget/pan_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class AttendancePage extends StatefulWidget {
-  const AttendancePage({super.key});
+class PanPage extends StatefulWidget {
+  const PanPage({super.key});
 
   @override
-  State<AttendancePage> createState() => _AttendancePageState();
+  State<PanPage> createState() => _PanPageState();
 }
 
-class _AttendancePageState extends State<AttendancePage> {
+class _PanPageState extends State<PanPage> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
-          return AttendanceWidget(
+          return PanWidget(
             pageTitleWidth: 120,
             pageTitleTextSize: 14,
             screenWidth: MediaQuery.of(context).size.width,
@@ -25,7 +25,7 @@ class _AttendancePageState extends State<AttendancePage> {
             searchBarWidth: MediaQuery.of(context).size.width * .5,
           );
         } else {
-          return AttendanceWidget(
+          return PanWidget(
             pageTitleWidth: 200,
             pageTitleTextSize: 18,
             screenWidth: MediaQuery.of(context).size.width,

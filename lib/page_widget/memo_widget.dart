@@ -2,6 +2,9 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:hr_veract/custom_widgets/custom_appbar_drawer.dart';
 import 'package:hr_veract/custom_widgets/custom_appbar_menu.dart';
+import 'package:hr_veract/custom_widgets/custom_button.dart';
+import 'package:hr_veract/custom_widgets/custom_paginated_table.dart';
+import 'package:hr_veract/custom_widgets/custom_popup_dialog.dart';
 import 'package:hr_veract/custom_widgets/custom_search_bar.dart';
 
 class MemoWidget extends StatefulWidget {
@@ -37,18 +40,18 @@ class _MemoWidgetState extends State<MemoWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SizedBox(
-                width: widget.screenWidth,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
+            SizedBox(
+              width: widget.screenWidth,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
                           'Memo Page',
                           style: TextStyle(
                             fontFamily: 'PoppinsBold',
@@ -57,86 +60,56 @@ class _MemoWidgetState extends State<MemoWidget> {
                             letterSpacing: 2,
                           ),
                         ),
-                        CustomSearchBar(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: CustomSearchBar(
                           width: widget.searchBarWidth,
                           textSize: widget.searchBarTextSize,
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    SizedBox(
-                      width: 700,
-                      height: 620,
-                      child: PaginatedDataTable2(
-                        showCheckboxColumn: false,
-                        headingRowColor: WidgetStateColor.resolveWith(
-                          (states) => Color.fromRGBO(106, 159, 106, 1),
-                        ),
-                        headingRowHeight: 50,
-                        dataRowHeight: 50,
-                        rowsPerPage: 10,
-                        columnSpacing: 15,
-                        columns: [
-                          DataColumn2(
-                            size: ColumnSize.M,
-                            label: SizedBox(
-                              child: Text(
-                                "DATE",
-                                overflow: TextOverflow.visible,
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  CustomPaginatedTable(
+                    columns: [
+                      DataColumn2(
+                        size: ColumnSize.M,
+                        label: SizedBox(
+                          child: Text(
+                            "DATE",
+                            overflow: TextOverflow.visible,
+                            textAlign: TextAlign.left,
                           ),
-                          DataColumn2(
-                            size: ColumnSize.L,
-                            label: SizedBox(
-                              child: Text(
-                                "SUBJECT",
-                                overflow: TextOverflow.visible,
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                          ),
-                          DataColumn2(
-                            size: ColumnSize.L,
-                            label: SizedBox(
-                              child: Text(
-                                "CATEGORY",
-                                overflow: TextOverflow.visible,
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                          ),
-                          // DataColumn2(
-                          //   size: ColumnSize.M,
-                          //   label: SizedBox(
-                          //     child: Text(
-                          //       "STATUS",
-                          //       overflow: TextOverflow.visible,
-                          //       textAlign: TextAlign.left,
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
-                        source: _MyDataSource(context),
-                        headingTextStyle: TextStyle(
-                          fontFamily: "PoppinsBold",
-                          letterSpacing: 2,
-                          fontWeight: FontWeight.bold,
-                          fontSize: widget.headerTextSize,
-                          color: Color.fromRGBO(44, 62, 80, 1),
-                        ),
-                        dataTextStyle: TextStyle(
-                          fontFamily: "PoppinsRegular",
-                          letterSpacing: 2,
-                          fontSize: widget.dataTextSize,
-                          color: Color.fromRGBO(44, 62, 80, 1),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 20),
-                  ],
-                ),
+                      DataColumn2(
+                        size: ColumnSize.L,
+                        label: SizedBox(
+                          child: Text(
+                            "SUBJECT",
+                            overflow: TextOverflow.visible,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      DataColumn2(
+                        size: ColumnSize.M,
+                        label: SizedBox(
+                          child: Text(
+                            "RELEASED",
+                            overflow: TextOverflow.visible,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                    ],
+                    dataSource: _MyDataSource(context),
+                    headerTextSize: widget.headerTextSize,
+                    dataTextSize: widget.dataTextSize,
+                  ),
+                  SizedBox(height: 20),
+                ],
               ),
             ),
           ],
@@ -148,57 +121,32 @@ class _MemoWidgetState extends State<MemoWidget> {
 
 class _MyDataSource extends DataTableSource {
   final BuildContext context;
-  // final double headerTextSize;
-  // final double dataTextSize;
-  // final double containerWidth;
-  // final double dataCellWidth;
 
   final List<Map<String, String>> _data = List.generate(
     50,
     (index) => {
       "DATE": "March $index, 2025",
-      "SUBJECT": "Developer",
-      "CATEGORY": "Developer",
+      "SUBJECT": "Employee Wellness",
       "STATUS": "Released",
     },
   );
 
-  _MyDataSource(
-    this.context,
-    // this.headerTextSize,
-    // this.dataTextSize,
-    // this.containerWidth,
-    // this.dataCellWidth,
-  );
+  _MyDataSource(this.context);
 
   @override
   DataRow? getRow(int index) {
     if (index >= _data.length) return null;
     final row = _data[index];
     return DataRow(
-      // onSelectChanged: (selected) {
-      //   if (selected != null && selected) {
-      //     Navigator.push(
-      //       context,
-      //       MaterialPageRoute(
-      //         builder:
-      //             (context) => EmployeesProfileWidget(
-      //               // employeeCode: "${_data[index]['code']}",
-      //               containerWidth: containerWidth,
-      //               dataTextSize: dataTextSize,
-      //               headerTextSize: headerTextSize,
-      //               dataCellWidth: dataCellWidth,
-      //               dataCellWidthLeft: 2,
-      //             ),
-      //       ),
-      //     );
-      //   }
-      // },
+      onSelectChanged: (selected) {
+        if (selected != null && selected) {
+          _showPopup(context);
+        }
+      },
       cells: [
         DataCell(Text(row["DATE"]!)),
         DataCell(Text(row["SUBJECT"]!)),
-        DataCell(Text(row["CATEGORY"]!)),
-        // DataCell(Text(row["STATUS"]!)),
+        DataCell(Text(row["STATUS"]!)),
       ],
     );
   }
@@ -209,4 +157,100 @@ class _MyDataSource extends DataTableSource {
   int get rowCount => _data.length;
   @override
   int get selectedRowCount => 0;
+}
+
+void _showPopup(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return CustomPopupDialog(
+        contents: [
+          SizedBox(height: 5),
+          Text(
+            "Date:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "March 1, 2025",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Subject:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "Employee Wellness",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Category:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "general",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Status:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "Released",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 15),
+          Center(
+            child: CustomButton(
+              onPressed: () {
+                print('pressed');
+              },
+              buttonText: 'Download',
+              buttonHeight: 25,
+              buttonWidth: 100,
+              buttonTextSize: 12,
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }
