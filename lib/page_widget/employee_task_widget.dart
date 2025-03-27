@@ -64,7 +64,7 @@ class _EmployeeTaskWidgetState extends State<EmployeeTaskWidget> {
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),
-      appBar: CustomAppbarMenu(),
+      appBar: CustomAppbarMenu(appBarTitle: 'Task'),
       drawer: CustomAppbarDrawer(),
       body: SingleChildScrollView(
         child: Row(
@@ -293,7 +293,7 @@ class _EmployeeTaskWidgetState extends State<EmployeeTaskWidget> {
                             ),
                             SizedBox(width: 2),
                             Text(
-                              "Pedning",
+                              "Pending",
                               style: TextStyle(
                                 fontFamily: 'PoppinsBold',
                                 fontWeight: FontWeight.bold,

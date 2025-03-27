@@ -25,11 +25,13 @@ class _PopupDialogState extends State<CustomPopupDialog> {
         child: Row(
           children: [
             Expanded(
-              child: SizedBox(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: widget.contents,
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: widget.contents,
+                  ),
                 ),
               ),
             ),

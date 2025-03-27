@@ -16,12 +16,12 @@ class _MemoPageState extends State<MemoPage> {
       builder: (context, sizingInformation) {
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
           return MemoWidget(
-            pageTitleTextSize: 14,
+            pageTitleTextSize: 18,
             screenWidth: MediaQuery.of(context).size.width,
             headerTextSize: 11,
             dataTextSize: 11,
             searchBarTextSize: 11,
-            searchBarWidth: MediaQuery.of(context).size.width * .5,
+            searchBarWidth: MediaQuery.of(context).size.width * .8,
           );
         } else {
           return MemoWidget(
@@ -29,8 +29,8 @@ class _MemoPageState extends State<MemoPage> {
             screenWidth: MediaQuery.of(context).size.width,
             headerTextSize: 14,
             dataTextSize: 14,
-            searchBarTextSize: 14,
-            searchBarWidth: MediaQuery.of(context).size.width * .5,
+            searchBarTextSize: 11,
+            searchBarWidth: MediaQuery.of(context).size.width * .8,
           );
         }
       },

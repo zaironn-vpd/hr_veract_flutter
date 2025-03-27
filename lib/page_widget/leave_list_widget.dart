@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:hr_veract/custom_widgets/custom_appbar_drawer.dart';
 import 'package:hr_veract/custom_widgets/custom_appbar_menu.dart';
 import 'package:hr_veract/custom_widgets/custom_button.dart';
+import 'package:hr_veract/custom_widgets/custom_nav_bar.dart';
 import 'package:hr_veract/custom_widgets/custom_paginated_table.dart';
 import 'package:hr_veract/custom_widgets/custom_popup_dialog.dart';
 import 'package:hr_veract/custom_widgets/custom_search_bar.dart';
 
-class MemoWidget extends StatefulWidget {
+class LeaveListWidget extends StatefulWidget {
   final double screenWidth;
   final double headerTextSize;
   final double dataTextSize;
   final double searchBarWidth;
   final double searchBarTextSize;
   final double pageTitleTextSize;
+  final double buttonHeight;
+  final double navTextSize;
 
-  const MemoWidget({
+  const LeaveListWidget({
     super.key,
     required this.screenWidth,
     required this.headerTextSize,
@@ -23,18 +26,20 @@ class MemoWidget extends StatefulWidget {
     required this.searchBarWidth,
     required this.searchBarTextSize,
     required this.pageTitleTextSize,
+    required this.buttonHeight,
+    required this.navTextSize,
   });
 
   @override
-  State<MemoWidget> createState() => _MemoWidgetState();
+  State<LeaveListWidget> createState() => _LeaveListWidgetState();
 }
 
-class _MemoWidgetState extends State<MemoWidget> {
+class _LeaveListWidgetState extends State<LeaveListWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),
-      appBar: CustomAppbarMenu(appBarTitle: 'Memo'),
+      appBar: CustomAppbarMenu(appBarTitle: 'Leave List'),
       drawer: CustomAppbarDrawer(),
       body: SingleChildScrollView(
         child: Row(
@@ -47,22 +52,47 @@ class _MemoWidgetState extends State<MemoWidget> {
                 children: [
                   SizedBox(height: 20),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: CustomButton(
+                          onPressed: () {},
+                          buttonText: 'File Leave',
+                          buttonHeight: widget.buttonHeight,
+                          buttonWidth: 100,
+                          buttonTextSize: widget.searchBarTextSize,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomSearchBar(
+                        height: 30,
                         width: widget.searchBarWidth,
                         textSize: widget.searchBarTextSize,
-                        height: 30,
                         horizontalPadding: 15,
                         verticalPadding: 6,
                       ),
                     ],
                   ),
                   SizedBox(height: 20),
+                  SizedBox(
+                    height: 30,
+                    child: CustomNavBar(
+                      navTextSize: widget.navTextSize,
+                      navTitle: ['Personal Leave', 'Handled Leave Request'],
+                    ),
+                  ),
+                  SizedBox(height: 10),
                   CustomPaginatedTable(
+                    tableHeight: 0.65,
                     columns: [
                       DataColumn2(
-                        size: ColumnSize.M,
+                        size: ColumnSize.S,
                         label: SizedBox(
                           child: Text(
                             "DATE",
@@ -75,17 +105,17 @@ class _MemoWidgetState extends State<MemoWidget> {
                         size: ColumnSize.L,
                         label: SizedBox(
                           child: Text(
-                            "SUBJECT",
+                            "EMPLOYEE",
                             overflow: TextOverflow.visible,
                             textAlign: TextAlign.left,
                           ),
                         ),
                       ),
                       DataColumn2(
-                        size: ColumnSize.M,
+                        size: ColumnSize.L,
                         label: SizedBox(
                           child: Text(
-                            "RELEASED",
+                            "LEAVE TYPE",
                             overflow: TextOverflow.visible,
                             textAlign: TextAlign.left,
                           ),
@@ -112,9 +142,9 @@ class _MyDataSource extends DataTableSource {
   final List<Map<String, String>> _data = List.generate(
     50,
     (index) => {
-      "DATE": "March $index, 2025",
-      "SUBJECT": "Employee Wellness",
-      "STATUS": "Released",
+      "TASK": "March $index, 2025",
+      "EMPLOYEE": "John, Doe",
+      "LEAVETYPE": "Sick Leave",
     },
   );
 
@@ -131,9 +161,9 @@ class _MyDataSource extends DataTableSource {
         }
       },
       cells: [
-        DataCell(Text(row["DATE"]!)),
-        DataCell(Text(row["SUBJECT"]!)),
-        DataCell(Text(row["STATUS"]!)),
+        DataCell(Text(row["TASK"]!)),
+        DataCell(Text(row["EMPLOYEE"]!)),
+        DataCell(Text(row["LEAVETYPE"]!)),
       ],
     );
   }
@@ -154,6 +184,24 @@ void _showPopup(BuildContext context) {
         contents: [
           SizedBox(height: 5),
           Text(
+            "Employee:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "John Doe",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
             "Date:",
             style: TextStyle(
               fontFamily: "PoppinsBold",
@@ -172,7 +220,7 @@ void _showPopup(BuildContext context) {
           ),
           SizedBox(height: 5),
           Text(
-            "Subject:",
+            "Due Date:",
             style: TextStyle(
               fontFamily: "PoppinsBold",
               fontWeight: FontWeight.bold,
@@ -181,7 +229,7 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "Employee Wellness",
+            "March 1, 2025",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
@@ -190,7 +238,7 @@ void _showPopup(BuildContext context) {
           ),
           SizedBox(height: 5),
           Text(
-            "Category:",
+            "Leave Type:",
             style: TextStyle(
               fontFamily: "PoppinsBold",
               fontWeight: FontWeight.bold,
@@ -199,7 +247,61 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "general",
+            "Sick Leave",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            "Payment:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "With Pay",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            "To be taken:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "March 55, 2025",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            "HR:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "IT Administrator",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
@@ -217,25 +319,25 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "Released",
+            "HR Approved",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
               fontSize: 15,
             ),
           ),
-          SizedBox(height: 15),
-          Center(
-            child: CustomButton(
-              onPressed: () {
-                print('pressed');
-              },
-              buttonText: 'Download',
-              buttonHeight: 25,
-              buttonWidth: 100,
-              buttonTextSize: 12,
-            ),
-          ),
+          // SizedBox(height: 15),
+          // Center(
+          //   child: CustomButton(
+          //     onPressed: () {
+          //       print('pressed');
+          //     },
+          //     buttonText: 'Download',
+          //     buttonHeight: 25,
+          //     buttonWidth: 100,
+          //     buttonTextSize: 12,
+          //   ),
+          // ),
         ],
       );
     },

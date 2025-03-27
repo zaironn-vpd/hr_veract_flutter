@@ -8,6 +8,9 @@ class CustomAppbarDrawer extends StatefulWidget {
 }
 
 class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
+  bool isExpandedET = false;
+  bool isExpandedCF = false;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -50,10 +53,21 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 Navigator.pushReplacementNamed(context, '/dashboard');
               },
             ),
-            ListTile(
-              leading: Icon(Icons.task),
-              title: Text(
-                "Employee Tasks",
+            ExpansionTile(
+              leading: Icon(
+                Icons.task,
+                color:
+                    isExpandedET
+                        ? Color.fromRGBO(106, 159, 106, 1)
+                        : Colors.grey[750],
+              ),
+              onExpansionChanged: (expanded) {
+                setState(() {
+                  isExpandedET = expanded;
+                });
+              },
+              title: const Text(
+                "Employee Task",
                 style: TextStyle(
                   fontFamily: "PoppinsBold",
                   fontWeight: FontWeight.bold,
@@ -61,9 +75,45 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                   fontSize: 10,
                 ),
               ),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/task');
-              },
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.feed_outlined),
+                        title: Text(
+                          "Task Overview",
+                          style: TextStyle(
+                            fontFamily: "PoppinsBold",
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                            fontSize: 10,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, '/task');
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.check_circle_outline_rounded),
+                        title: const Text(
+                          "Task List",
+                          style: TextStyle(
+                            fontFamily: "PoppinsBold",
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                            fontSize: 10,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, '/taskList');
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
             ListTile(
               leading: Icon(Icons.folder),
@@ -155,9 +205,20 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 Navigator.pushReplacementNamed(context, '/paycheck');
               },
             ),
-            ListTile(
-              leading: Icon(Icons.chrome_reader_mode_outlined),
-              title: Text(
+            ExpansionTile(
+              leading: Icon(
+                Icons.chrome_reader_mode_outlined,
+                color:
+                    isExpandedCF
+                        ? Color.fromRGBO(106, 159, 106, 1)
+                        : Colors.grey[750],
+              ),
+              onExpansionChanged: (expanded) {
+                setState(() {
+                  isExpandedCF = expanded;
+                });
+              },
+              title: const Text(
                 "Company Forms",
                 style: TextStyle(
                   fontFamily: "PoppinsBold",
@@ -166,9 +227,48 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                   fontSize: 10,
                 ),
               ),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.access_time_rounded),
+                        title: Text(
+                          "Overtime List",
+                          style: TextStyle(
+                            fontFamily: "PoppinsBold",
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                            fontSize: 10,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            '/overtimeList',
+                          );
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.airplanemode_active_rounded),
+                        title: const Text(
+                          "Leave List",
+                          style: TextStyle(
+                            fontFamily: "PoppinsBold",
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                            fontSize: 10,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, '/leaveList');
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
             ListTile(
               leading: Icon(Icons.poll_outlined),

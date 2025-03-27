@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:hr_veract/custom_widgets/custom_appbar_drawer.dart';
 import 'package:hr_veract/custom_widgets/custom_appbar_menu.dart';
 import 'package:hr_veract/custom_widgets/custom_button.dart';
+import 'package:hr_veract/custom_widgets/custom_nav_bar.dart';
 import 'package:hr_veract/custom_widgets/custom_paginated_table.dart';
 import 'package:hr_veract/custom_widgets/custom_popup_dialog.dart';
 import 'package:hr_veract/custom_widgets/custom_search_bar.dart';
 
-class MemoWidget extends StatefulWidget {
+class OvertimeListWidget extends StatefulWidget {
   final double screenWidth;
   final double headerTextSize;
   final double dataTextSize;
   final double searchBarWidth;
   final double searchBarTextSize;
   final double pageTitleTextSize;
+  final double buttonHeight;
+  final double navTextSize;
 
-  const MemoWidget({
+  const OvertimeListWidget({
     super.key,
     required this.screenWidth,
     required this.headerTextSize,
@@ -23,18 +26,20 @@ class MemoWidget extends StatefulWidget {
     required this.searchBarWidth,
     required this.searchBarTextSize,
     required this.pageTitleTextSize,
+    required this.buttonHeight,
+    required this.navTextSize,
   });
 
   @override
-  State<MemoWidget> createState() => _MemoWidgetState();
+  State<OvertimeListWidget> createState() => _OvertimeListWidgetState();
 }
 
-class _MemoWidgetState extends State<MemoWidget> {
+class _OvertimeListWidgetState extends State<OvertimeListWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),
-      appBar: CustomAppbarMenu(appBarTitle: 'Memo'),
+      appBar: CustomAppbarMenu(appBarTitle: 'Overtime List'),
       drawer: CustomAppbarDrawer(),
       body: SingleChildScrollView(
         child: Row(
@@ -47,19 +52,46 @@ class _MemoWidgetState extends State<MemoWidget> {
                 children: [
                   SizedBox(height: 20),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: CustomButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/overtimeForm');
+                          },
+                          buttonText: 'File OT',
+                          buttonHeight: widget.buttonHeight,
+                          buttonWidth: 100,
+                          buttonTextSize: widget.searchBarTextSize,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomSearchBar(
+                        height: 30,
                         width: widget.searchBarWidth,
                         textSize: widget.searchBarTextSize,
-                        height: 30,
                         horizontalPadding: 15,
                         verticalPadding: 6,
                       ),
                     ],
                   ),
                   SizedBox(height: 20),
+                  SizedBox(
+                    height: 30,
+                    child: CustomNavBar(
+                      navTextSize: widget.navTextSize,
+                      navTitle: ['Personal OT', 'Handled OT Request'],
+                    ),
+                  ),
+                  SizedBox(height: 10),
                   CustomPaginatedTable(
+                    tableHeight: 0.65,
                     columns: [
                       DataColumn2(
                         size: ColumnSize.M,
@@ -75,17 +107,17 @@ class _MemoWidgetState extends State<MemoWidget> {
                         size: ColumnSize.L,
                         label: SizedBox(
                           child: Text(
-                            "SUBJECT",
+                            "EMPLOYEE",
                             overflow: TextOverflow.visible,
                             textAlign: TextAlign.left,
                           ),
                         ),
                       ),
                       DataColumn2(
-                        size: ColumnSize.M,
+                        size: ColumnSize.S,
                         label: SizedBox(
                           child: Text(
-                            "RELEASED",
+                            "DURATION",
                             overflow: TextOverflow.visible,
                             textAlign: TextAlign.left,
                           ),
@@ -112,9 +144,9 @@ class _MyDataSource extends DataTableSource {
   final List<Map<String, String>> _data = List.generate(
     50,
     (index) => {
-      "DATE": "March $index, 2025",
-      "SUBJECT": "Employee Wellness",
-      "STATUS": "Released",
+      "TASK": "March $index, 2025",
+      "EMPLOYEE": "John, Doe",
+      "DURATION": "4",
     },
   );
 
@@ -131,9 +163,9 @@ class _MyDataSource extends DataTableSource {
         }
       },
       cells: [
-        DataCell(Text(row["DATE"]!)),
-        DataCell(Text(row["SUBJECT"]!)),
-        DataCell(Text(row["STATUS"]!)),
+        DataCell(Text(row["TASK"]!)),
+        DataCell(Text(row["EMPLOYEE"]!)),
+        DataCell(Text(row["DURATION"]!)),
       ],
     );
   }
@@ -154,6 +186,24 @@ void _showPopup(BuildContext context) {
         contents: [
           SizedBox(height: 5),
           Text(
+            "Employee:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "John Doe",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
             "Date:",
             style: TextStyle(
               fontFamily: "PoppinsBold",
@@ -172,7 +222,7 @@ void _showPopup(BuildContext context) {
           ),
           SizedBox(height: 5),
           Text(
-            "Subject:",
+            "Duration:",
             style: TextStyle(
               fontFamily: "PoppinsBold",
               fontWeight: FontWeight.bold,
@@ -181,7 +231,7 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "Employee Wellness",
+            "4",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
@@ -190,7 +240,7 @@ void _showPopup(BuildContext context) {
           ),
           SizedBox(height: 5),
           Text(
-            "Category:",
+            "Rate:",
             style: TextStyle(
               fontFamily: "PoppinsBold",
               fontWeight: FontWeight.bold,
@@ -199,7 +249,25 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "general",
+            "1000",
+            style: TextStyle(
+              fontFamily: "PoppinsRegular",
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            "HR:",
+            style: TextStyle(
+              fontFamily: "PoppinsBold",
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "IT Administrator",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
@@ -217,25 +285,25 @@ void _showPopup(BuildContext context) {
             ),
           ),
           Text(
-            "Released",
+            "HR Approved",
             style: TextStyle(
               fontFamily: "PoppinsRegular",
               letterSpacing: 2,
               fontSize: 15,
             ),
           ),
-          SizedBox(height: 15),
-          Center(
-            child: CustomButton(
-              onPressed: () {
-                print('pressed');
-              },
-              buttonText: 'Download',
-              buttonHeight: 25,
-              buttonWidth: 100,
-              buttonTextSize: 12,
-            ),
-          ),
+          // SizedBox(height: 15),
+          // Center(
+          //   child: CustomButton(
+          //     onPressed: () {
+          //       print('pressed');
+          //     },
+          //     buttonText: 'Download',
+          //     buttonHeight: 25,
+          //     buttonWidth: 100,
+          //     buttonTextSize: 12,
+          //   ),
+          // ),
         ],
       );
     },

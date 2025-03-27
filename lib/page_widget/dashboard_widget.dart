@@ -35,7 +35,7 @@ class DashboardWidgetState extends State<DashboardWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),
-      appBar: CustomAppbarMenu(),
+      appBar: CustomAppbarMenu(appBarTitle: 'VeraCT'),
       drawer: CustomAppbarDrawer(),
       body: SingleChildScrollView(
         child: Row(

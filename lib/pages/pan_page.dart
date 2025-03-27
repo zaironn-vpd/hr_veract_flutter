@@ -22,7 +22,7 @@ class _PanPageState extends State<PanPage> {
             headerTextSize: 11,
             dataTextSize: 11,
             searchBarTextSize: 11,
-            searchBarWidth: MediaQuery.of(context).size.width * .5,
+            searchBarWidth: MediaQuery.of(context).size.width * .8,
           );
         } else {
           return PanWidget(
@@ -31,8 +31,8 @@ class _PanPageState extends State<PanPage> {
             screenWidth: MediaQuery.of(context).size.width,
             headerTextSize: 14,
             dataTextSize: 14,
-            searchBarTextSize: 14,
-            searchBarWidth: MediaQuery.of(context).size.width * .5,
+            searchBarTextSize: 11,
+            searchBarWidth: MediaQuery.of(context).size.width * .8,
           );
         }
       },

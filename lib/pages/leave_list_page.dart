@@ -1,38 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/page_widget/paycheck_widget.dart';
+import 'package:hr_veract/page_widget/leave_list_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class PaycheckPage extends StatefulWidget {
-  const PaycheckPage({super.key});
+class LeaveListPage extends StatefulWidget {
+  const LeaveListPage({super.key});
 
   @override
-  State<PaycheckPage> createState() => _PaycheckPageState();
+  State<LeaveListPage> createState() => _LeaveListPageState();
 }
 
-class _PaycheckPageState extends State<PaycheckPage> {
+class _LeaveListPageState extends State<LeaveListPage> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
-          return PaycheckWidget(
-            pageTitleWidth: 120,
+          return LeaveListWidget(
             pageTitleTextSize: 14,
             screenWidth: MediaQuery.of(context).size.width,
             headerTextSize: 11,
             dataTextSize: 11,
             searchBarTextSize: 11,
             searchBarWidth: MediaQuery.of(context).size.width * .8,
+            buttonHeight: 25,
+            navTextSize: 10,
           );
         } else {
-          return PaycheckWidget(
-            pageTitleWidth: 200,
-            pageTitleTextSize: 18,
+          return LeaveListWidget(
+            pageTitleTextSize: 16,
             screenWidth: MediaQuery.of(context).size.width,
             headerTextSize: 14,
             dataTextSize: 14,
             searchBarTextSize: 11,
             searchBarWidth: MediaQuery.of(context).size.width * .8,
+            buttonHeight: 25,
+            navTextSize: 12,
           );
         }
       },

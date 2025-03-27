@@ -35,7 +35,7 @@ class _AttendanceWidgetState extends State<AttendanceWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),
-      appBar: CustomAppbarMenu(),
+      appBar: CustomAppbarMenu(appBarTitle: 'Attendance'),
       drawer: CustomAppbarDrawer(),
       body: SingleChildScrollView(
         child: Row(
@@ -48,29 +48,14 @@ class _AttendanceWidgetState extends State<AttendanceWidget> {
                 children: [
                   SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: SizedBox(
-                          width: widget.pageTitleWidth,
-                          child: Text(
-                            'Attendance Page',
-                            style: TextStyle(
-                              fontFamily: 'PoppinsBold',
-                              fontWeight: FontWeight.bold,
-                              fontSize: widget.pageTitleTextSize,
-                              letterSpacing: 2,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: CustomSearchBar(
-                          width: widget.searchBarWidth,
-                          textSize: widget.searchBarTextSize,
-                        ),
+                      CustomSearchBar(
+                        width: widget.searchBarWidth,
+                        textSize: widget.searchBarTextSize,
+                        height: 30,
+                        verticalPadding: 6,
+                        horizontalPadding: 15,
                       ),
                     ],
                   ),
@@ -112,7 +97,6 @@ class _AttendanceWidgetState extends State<AttendanceWidget> {
                     headerTextSize: widget.headerTextSize,
                     dataTextSize: widget.dataTextSize,
                   ),
-                  SizedBox(height: 20),
                 ],
               ),
             ),

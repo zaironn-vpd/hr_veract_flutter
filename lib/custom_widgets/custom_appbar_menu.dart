@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CustomAppbarMenu extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppbarMenu({super.key});
+  final String appBarTitle;
+  const CustomAppbarMenu({super.key, required this.appBarTitle});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
       title: Text(
-        "VeraCT",
+        appBarTitle,
         style: TextStyle(
           fontFamily: 'PoppinsBold',
           fontWeight: FontWeight.bold,
           color: Colors.white,
-          fontSize: 18,
+          fontSize: 16,
           letterSpacing: 2,
         ),
       ),
