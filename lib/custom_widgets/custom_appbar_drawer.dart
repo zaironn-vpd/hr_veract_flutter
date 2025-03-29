@@ -282,7 +282,7 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/pollVoting');
               },
             ),
             ListTile(

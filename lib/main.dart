@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hr_veract/pages/leave_form_page.dart';
 import 'package:hr_veract/pages/overtime_form_page.dart';
 import 'package:hr_veract/pages/overtime_list_page.dart';
+import 'package:hr_veract/pages/poll_voting_page.dart';
 import 'package:hr_veract/pages/task_list_page.dart';
 import 'package:hr_veract/pages/leave_list_page.dart';
 import 'package:hr_veract/pages/pan_page.dart';
@@ -32,8 +34,10 @@ void main() {
         '/task': (context) => EmployeeTaskPage(),
         '/taskList': (context) => TaskListPage(),
         '/leaveList': (context) => LeaveListPage(),
+        '/leaveForm': (context) => LeaveFormPage(),
         '/overtimeList': (context) => OvertimeListPage(),
         '/overtimeForm': (context) => OvertimeFormPage(),
+        '/pollVoting': (context) => PollVotingPage(),
       },
     ),
   );

@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/page_widget/overtime_form_widget.dart';
+import 'package:hr_veract/page_widget/leave_form_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class OvertimeFormPage extends StatefulWidget {
-  const OvertimeFormPage({super.key});
+class LeaveFormPage extends StatefulWidget {
+  const LeaveFormPage({super.key});
 
   @override
-  State<OvertimeFormPage> createState() => _OvertimeFormPageState();
+  State<LeaveFormPage> createState() => _LeaveFormPageState();
 }
 
-class _OvertimeFormPageState extends State<OvertimeFormPage> {
+class _LeaveFormPageState extends State<LeaveFormPage> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
-          return OvertimeFormWidget(
+          return LeaveFormWidget(
             containerSize: 135,
             screenWidth: 280,
             reasonTextWidth: 280,
           );
         } else {
-          return OvertimeFormWidget(
+          return LeaveFormWidget(
             containerSize: 250,
             screenWidth: 510,
             reasonTextWidth: 510,

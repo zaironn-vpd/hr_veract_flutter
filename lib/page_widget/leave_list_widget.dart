@@ -35,6 +35,8 @@ class LeaveListWidget extends StatefulWidget {
 }
 
 class _LeaveListWidgetState extends State<LeaveListWidget> {
+  int? page;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +59,9 @@ class _LeaveListWidgetState extends State<LeaveListWidget> {
                       Padding(
                         padding: const EdgeInsets.only(right: 20),
                         child: CustomButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/leaveForm');
+                          },
                           buttonText: 'File Leave',
                           buttonHeight: widget.buttonHeight,
                           buttonWidth: 100,
@@ -85,6 +89,11 @@ class _LeaveListWidgetState extends State<LeaveListWidget> {
                     child: CustomNavBar(
                       navTextSize: widget.navTextSize,
                       navTitle: ['Personal Leave', 'Handled Leave Request'],
+                      pageIndex: (pageIndex) {
+                        setState(() {
+                          page = pageIndex;
+                        });
+                      },
                     ),
                   ),
                   SizedBox(height: 10),
@@ -122,7 +131,10 @@ class _LeaveListWidgetState extends State<LeaveListWidget> {
                         ),
                       ),
                     ],
-                    dataSource: _MyDataSource(context),
+                    dataSource:
+                        page == 1
+                            ? _PersonalLeave(context)
+                            : _HandledLeave(context),
                     headerTextSize: widget.headerTextSize,
                     dataTextSize: widget.dataTextSize,
                   ),
@@ -136,19 +148,59 @@ class _LeaveListWidgetState extends State<LeaveListWidget> {
   }
 }
 
-class _MyDataSource extends DataTableSource {
+class _PersonalLeave extends DataTableSource {
   final BuildContext context;
 
   final List<Map<String, String>> _data = List.generate(
     50,
     (index) => {
-      "TASK": "March $index, 2025",
+      "TASK": "Mar $index, 2025",
       "EMPLOYEE": "John, Doe",
       "LEAVETYPE": "Sick Leave",
     },
   );
 
-  _MyDataSource(this.context);
+  _PersonalLeave(this.context);
+
+  @override
+  DataRow? getRow(int index) {
+    if (index >= _data.length) return null;
+    final row = _data[index];
+    return DataRow(
+      onSelectChanged: (selected) {
+        if (selected != null && selected) {
+          _showPopup(context);
+        }
+      },
+      cells: [
+        DataCell(Text(row["TASK"]!)),
+        DataCell(Text(row["EMPLOYEE"]!)),
+        DataCell(Text(row["LEAVETYPE"]!)),
+      ],
+    );
+  }
+
+  @override
+  bool get isRowCountApproximate => false;
+  @override
+  int get rowCount => _data.length;
+  @override
+  int get selectedRowCount => 0;
+}
+
+class _HandledLeave extends DataTableSource {
+  final BuildContext context;
+
+  final List<Map<String, String>> _data = List.generate(
+    50,
+    (index) => {
+      "TASK": "Jan $index, 2025",
+      "EMPLOYEE": "Jane, Doe",
+      "LEAVETYPE": "Emergency Leave",
+    },
+  );
+
+  _HandledLeave(this.context);
 
   @override
   DataRow? getRow(int index) {

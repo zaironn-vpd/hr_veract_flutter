@@ -49,27 +49,7 @@ class EmployeesProfileWidget extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),
-      appBar: CustomAppbar(
-        title: "Profile",
-        textSize: 18,
-        actions: [
-          TextButton(
-            onPressed: () {
-              print("Edit button pressed");
-            },
-            child: Text(
-              "Edit",
-              style: TextStyle(
-                fontFamily: "PoppinsBold",
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Colors.white,
-                letterSpacing: 2,
-              ),
-            ),
-          ),
-        ],
-      ),
+      appBar: CustomAppbar(title: "Profile", textSize: 18),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: SingleChildScrollView(

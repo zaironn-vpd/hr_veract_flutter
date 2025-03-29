@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class CustomNavBar extends StatefulWidget {
   final double navTextSize;
   final List<String>? navTitle;
+  final Function(int) pageIndex;
 
   const CustomNavBar({
     super.key,
     required this.navTextSize,
     this.navTitle = const ["Home", "Search", "Profile"],
+    required this.pageIndex,
   });
 
   @override
@@ -21,6 +23,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
     setState(() {
       _selectedIndex = index;
     });
+
+    widget.pageIndex(_selectedIndex);
   }
 
   @override

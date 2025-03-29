@@ -172,14 +172,18 @@ class DashboardWidgetState extends State<DashboardWidget> {
                       spacing: 10,
                       children: [
                         CustomButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/overtimeForm');
+                          },
                           buttonHeight: 50,
                           buttonText: "Overtime Form",
                           buttonWidth: widget.buttonWidth,
                           buttonTextSize: widget.buttonTextSize,
                         ),
                         CustomButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/leaveForm');
+                          },
                           buttonHeight: 50,
                           buttonText: "Leave Form",
                           buttonWidth: widget.buttonWidth,
