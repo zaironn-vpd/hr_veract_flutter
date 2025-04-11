@@ -8,12 +8,12 @@ part of 'auth_user.dart';
 
 _AuthUser _$AuthUserFromJson(Map<String, dynamic> json) => _AuthUser(
   userName: json['userName'] as String,
-  password: json['password'] as String,
-  apiToken: json['apiToken'] as String,
+  email: json['email'] as String,
+  token: json['token'] as String,
 );
 
 Map<String, dynamic> _$AuthUserToJson(_AuthUser instance) => <String, dynamic>{
   'userName': instance.userName,
-  'password': instance.password,
-  'apiToken': instance.apiToken,
+  'email': instance.email,
+  'token': instance.token,
 };

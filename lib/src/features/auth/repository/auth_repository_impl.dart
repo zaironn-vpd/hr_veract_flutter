@@ -24,7 +24,18 @@ class AuthRepositoryImpl implements AuthRepository {
 
       if (response.statusCode == 200) {
         final data = response.data;
-        return AuthUser.fromJson(data);
+
+        final userName = data['user']['username'];
+        final email = data['user']['email'];
+        final token = data['authorisation']['token'];
+
+        final fullUserMap = {
+          'userName': userName,
+          'email': email,
+          'token': token,
+        };
+
+        return AuthUser.fromJson(fullUserMap);
       } else {
         throw Exception('Error logging in');
       }

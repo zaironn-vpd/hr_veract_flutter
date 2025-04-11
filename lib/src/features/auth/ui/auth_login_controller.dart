@@ -16,14 +16,18 @@ class AuthLoginController extends _$AuthLoginController {
   void signIn(String userName, String password) async {
     try {
       state = const AsyncLoading();
+
       final authService = ref.watch(authServiceProvider);
       final tokenRepo = ref.watch(tokenRepositoryProvider);
+
       final user = await authService.signIn(userName, password);
-      await tokenRepo.writeToken(value: user.apiToken);
+      await tokenRepo.writeToken(value: user.token);
+
       final authStateController = ref.watch(
         authStateControllerProvider.notifier,
       );
       await authStateController.checkState();
+
       state = const AsyncData(null);
     } on ServerException catch (e, st) {
       state = AsyncError(e, st);

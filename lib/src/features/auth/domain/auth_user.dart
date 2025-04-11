@@ -7,8 +7,8 @@ part 'auth_user.g.dart';
 abstract class AuthUser with _$AuthUser {
   const factory AuthUser({
     required String userName,
-    required String password,
-    required String apiToken,
+    required String email,
+    required String token,
   }) = _AuthUser;
 
   factory AuthUser.fromJson(Map<String, dynamic> json) =>

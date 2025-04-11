@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hr_veract/src/features/auth/repository/token_repository.dart';
+import 'package:hr_veract/src/features/profile/repository/profile_repository.dart';
 import 'package:hr_veract/views/custom_widgets/custom_appbar.dart';
 import 'package:hr_veract/views/custom_widgets/custom_employee_benefits_data.dart';
 import 'package:hr_veract/views/custom_widgets/custom_employee_profile_container.dart';
 import 'package:hr_veract/views/custom_widgets/custom_employee_personal_data.dart';
 import 'package:hr_veract/views/custom_widgets/custom_employee_work_data.dart';
+import 'package:hr_veract/views/custom_widgets/custom_popup_dialog.dart';
 
-class EmployeesProfileWidget extends StatelessWidget {
+class EmployeesProfileWidget extends ConsumerWidget {
   final double headerTextSize;
   final double dataTextSize;
   final double dataCellWidth;
@@ -22,7 +26,8 @@ class EmployeesProfileWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
     // Personal Data
     String fullName = "John Doe";
     String birthDate = "January 15, 1990";
@@ -46,6 +51,70 @@ class EmployeesProfileWidget extends StatelessWidget {
     String tin = "123-456-789-000";
     String pagibigMID = "9876543210";
     String philNumber = "123456789012";
+
+    
+    final authToken = ref.watch(tokenRepositoryProvider).getToken();
+
+    final profRepo = ref.watch(profileRepositoryProvider.notifier);
+    profRepo.fetchProfile(authToken);
+
+    
+    ref.listen<AsyncValue<void>>(profileRepositoryProvider, (prev, next) {
+      next.whenOrNull(
+        data: (data) => ,
+        loading:
+            () => showDialog(
+              context: context,
+              builder:
+                  (context) => CustomPopupDialog(
+                    contents: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [CircularProgressIndicator()],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+            ),
+        error:
+            (e, st) => showDialog(
+              context: context,
+              builder:
+                  (context) => AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Close'),
+                      ),
+                    ],
+                    content: Text(
+                      e.toString(),
+                      style: TextStyle(
+                        fontFamily: 'PoppinsRegular',
+                        fontSize: 14,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                  ),
+            ),
+      );
+    });
+
+    
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomButton extends ConsumerWidget {
   final VoidCallback onPressed;
   final String buttonText;
   final double buttonHeight;
@@ -19,7 +20,7 @@ class CustomButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: buttonHeight,
       width: buttonWidth,

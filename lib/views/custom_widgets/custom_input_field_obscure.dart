@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class InputFieldObscure extends StatefulWidget {
-  const InputFieldObscure({super.key});
+  final TextEditingController? controller;
+
+  const InputFieldObscure({super.key, this.controller});
 
   @override
   PasswordTextFieldState createState() => PasswordTextFieldState();
@@ -16,6 +18,7 @@ class PasswordTextFieldState extends State<InputFieldObscure> {
       width: 300,
       margin: EdgeInsets.only(bottom: 20),
       child: TextField(
+        controller: widget.controller,
         obscureText: _obscureText,
         style: TextStyle(
           fontFamily: 'PoppinsRegular',

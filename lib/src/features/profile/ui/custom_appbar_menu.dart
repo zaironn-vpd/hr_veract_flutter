@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hr_veract/src/features/auth/repository/auth_state.dart';
+import 'package:hr_veract/src/features/auth/repository/token_repository.dart';
+import 'package:hr_veract/src/features/profile/repository/profile_repository.dart';
 
-class CustomAppbarMenu extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppbarMenu extends ConsumerWidget implements PreferredSizeWidget {
   final String appBarTitle;
   const CustomAppbarMenu({super.key, required this.appBarTitle});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
       centerTitle: true,
       title: Text(
@@ -33,7 +37,20 @@ class CustomAppbarMenu extends StatelessWidget implements PreferredSizeWidget {
           padding: EdgeInsets.only(right: 15),
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/profile');
+              final tokenRepo = ref.watch(tokenRepositoryProvider);
+
+              ref.watch(authStateControllerProvider.notifier).checkState();
+              final authState = ref.watch(authStateNotifierProvider);
+              switch (authState) {
+                case AuthState.authenticated:
+                  Navigator.pushNamed(context, '/profile');
+                case AuthState.notAuthenticated:
+                  tokenRepo.clearToken();
+                  Navigator.pushReplacementNamed(context, '/');
+                default:
+                  tokenRepo.clearToken();
+                  Navigator.pushReplacementNamed(context, '/');
+              }
             },
             child: CircleAvatar(
               backgroundImage: AssetImage('images/profilePic.jpg'),

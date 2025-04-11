@@ -56,6 +56,10 @@ class _OvertimeFormWidgetState extends State<OvertimeFormWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController timeDifference = TextEditingController(
+      text: durationText,
+    );
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(233, 236, 239, 1),
       appBar: CustomAppbar(title: 'OT Form', textSize: 16),
@@ -188,7 +192,8 @@ class _OvertimeFormWidgetState extends State<OvertimeFormWidget> {
                             ),
                           ),
                           InputField(
-                            timeDifference: durationText,
+                            controller: timeDifference,
+                            //timeDifference: durationText,
                             enabled: true,
                             textFieldWidth: widget.containerSize,
                             textFieldHeight: 30,

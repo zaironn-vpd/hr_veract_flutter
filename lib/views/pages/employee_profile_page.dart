@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/views/page_widget/employee_profile_widget.dart';
+import 'package:hr_veract/src/features/profile/ui/employee_profile_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class EmployeeProfilePage extends StatelessWidget {

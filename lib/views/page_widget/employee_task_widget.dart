@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hr_veract/views/custom_widgets/custom_appbar_drawer.dart';
-import 'package:hr_veract/views/custom_widgets/custom_appbar_menu.dart';
+import 'package:hr_veract/src/features/profile/ui/custom_appbar_menu.dart';
 import 'package:hr_veract/views/custom_widgets/custom_chart.dart';
 import 'package:hr_veract/views/custom_widgets/custom_container_with_header.dart';
 import 'package:hr_veract/views/custom_widgets/custom_dashboard_container.dart';

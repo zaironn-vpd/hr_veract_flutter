@@ -1,18 +1,88 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hr_veract/src/features/auth/repository/auth_repository_impl.dart';
+import 'package:hr_veract/src/features/auth/repository/signOut_repository.dart';
+import 'package:hr_veract/views/custom_widgets/custom_popup_dialog.dart';
 
-class CustomAppbarDrawer extends StatefulWidget {
+class CustomAppbarDrawer extends ConsumerStatefulWidget {
   const CustomAppbarDrawer({super.key});
 
   @override
-  State<CustomAppbarDrawer> createState() => _CustomAppbarDrawerState();
+  ConsumerState<CustomAppbarDrawer> createState() => _CustomAppbarDrawerState();
 }
 
-class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
+class _CustomAppbarDrawerState extends ConsumerState<CustomAppbarDrawer> {
   bool isExpandedET = false;
   bool isExpandedCF = false;
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<AsyncValue<void>>(signoutRepositoryProvider, (prev, next) {
+      next.whenOrNull(
+        data: (data) => Navigator.pushReplacementNamed(context, '/'),
+        loading:
+            () => showDialog(
+              context: context,
+              builder:
+                  (context) => CustomPopupDialog(
+                    contents: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircularProgressIndicator(),
+                              SizedBox(height: 20),
+                              Text(
+                                'Logging out...',
+                                style: TextStyle(
+                                  fontFamily: "PoppinsRegular",
+                                  fontSize: 16,
+                                  letterSpacing: 2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+            ),
+        error:
+            (e, st) => showDialog(
+              context: context,
+              builder:
+                  (context) => AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Close'),
+                      ),
+                    ],
+                    content: Text(
+                      e.toString(),
+                      style: TextStyle(
+                        fontFamily: 'PoppinsRegular',
+                        fontSize: 14,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                  ),
+            ),
+      );
+    });
+
     return SizedBox(
       width: 250,
       child: Drawer(
@@ -298,7 +368,9 @@ class _CustomAppbarDrawerState extends State<CustomAppbarDrawer> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacementNamed(context, "/");
+                final signOut = ref.watch(signoutRepositoryProvider.notifier);
+                signOut.signOut();
+                //Navigator.pushReplacementNamed(context, "/");
               },
             ),
           ],

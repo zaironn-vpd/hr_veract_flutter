@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthUser {
 
- String get userName; String get password; String get apiToken;
+ String get userName; String get email; String get token;
 /// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $AuthUserCopyWith<AuthUser> get copyWith => _$AuthUserCopyWithImpl<AuthUser>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthUser&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.password, password) || other.password == password)&&(identical(other.apiToken, apiToken) || other.apiToken == apiToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthUser&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.email, email) || other.email == email)&&(identical(other.token, token) || other.token == token));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,userName,password,apiToken);
+int get hashCode => Object.hash(runtimeType,userName,email,token);
 
 @override
 String toString() {
-  return 'AuthUser(userName: $userName, password: $password, apiToken: $apiToken)';
+  return 'AuthUser(userName: $userName, email: $email, token: $token)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $AuthUserCopyWith<$Res>  {
   factory $AuthUserCopyWith(AuthUser value, $Res Function(AuthUser) _then) = _$AuthUserCopyWithImpl;
 @useResult
 $Res call({
- String userName, String password, String apiToken
+ String userName, String email, String token
 });
 
 
@@ -66,11 +66,11 @@ class _$AuthUserCopyWithImpl<$Res>
 
 /// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? userName = null,Object? password = null,Object? apiToken = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? userName = null,Object? email = null,Object? token = null,}) {
   return _then(_self.copyWith(
 userName: null == userName ? _self.userName : userName // ignore: cast_nullable_to_non_nullable
-as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as String,apiToken: null == apiToken ? _self.apiToken : apiToken // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -82,12 +82,12 @@ as String,
 @JsonSerializable()
 
 class _AuthUser implements AuthUser {
-  const _AuthUser({required this.userName, required this.password, required this.apiToken});
+  const _AuthUser({required this.userName, required this.email, required this.token});
   factory _AuthUser.fromJson(Map<String, dynamic> json) => _$AuthUserFromJson(json);
 
 @override final  String userName;
-@override final  String password;
-@override final  String apiToken;
+@override final  String email;
+@override final  String token;
 
 /// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
@@ -102,16 +102,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthUser&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.password, password) || other.password == password)&&(identical(other.apiToken, apiToken) || other.apiToken == apiToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthUser&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.email, email) || other.email == email)&&(identical(other.token, token) || other.token == token));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,userName,password,apiToken);
+int get hashCode => Object.hash(runtimeType,userName,email,token);
 
 @override
 String toString() {
-  return 'AuthUser(userName: $userName, password: $password, apiToken: $apiToken)';
+  return 'AuthUser(userName: $userName, email: $email, token: $token)';
 }
 
 
@@ -122,7 +122,7 @@ abstract mixin class _$AuthUserCopyWith<$Res> implements $AuthUserCopyWith<$Res>
   factory _$AuthUserCopyWith(_AuthUser value, $Res Function(_AuthUser) _then) = __$AuthUserCopyWithImpl;
 @override @useResult
 $Res call({
- String userName, String password, String apiToken
+ String userName, String email, String token
 });
 
 
@@ -139,11 +139,11 @@ class __$AuthUserCopyWithImpl<$Res>
 
 /// Create a copy of AuthUser
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? userName = null,Object? password = null,Object? apiToken = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? userName = null,Object? email = null,Object? token = null,}) {
   return _then(_AuthUser(
 userName: null == userName ? _self.userName : userName // ignore: cast_nullable_to_non_nullable
-as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as String,apiToken: null == apiToken ? _self.apiToken : apiToken // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

@@ -10,8 +10,9 @@ class InputField extends StatelessWidget {
   final double borderRadius;
   final bool enabled;
   final int maxLines;
-  final String? timeDifference;
+  //final String? timeDifference;
   final Color textColor;
+  final TextEditingController? controller;
 
   const InputField({
     super.key,
@@ -24,8 +25,9 @@ class InputField extends StatelessWidget {
     this.borderRadius = 15,
     this.enabled = false,
     this.maxLines = 1,
-    this.timeDifference,
+    //this.timeDifference,
     this.textColor = const Color.fromRGBO(44, 62, 80, 1),
+    this.controller,
   });
 
   @override
@@ -34,7 +36,7 @@ class InputField extends StatelessWidget {
       width: textFieldWidth,
       height: textFieldHeight,
       child: TextField(
-        controller: TextEditingController(text: timeDifference),
+        controller: controller,
         maxLines: maxLines,
         readOnly: enabled,
         style: TextStyle(

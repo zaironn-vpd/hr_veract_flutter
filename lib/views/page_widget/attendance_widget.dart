@@ -1,7 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:hr_veract/views/custom_widgets/custom_appbar_drawer.dart';
-import 'package:hr_veract/views/custom_widgets/custom_appbar_menu.dart';
+import 'package:hr_veract/src/features/profile/ui/custom_appbar_menu.dart';
 import 'package:hr_veract/views/custom_widgets/custom_paginated_table.dart';
 import 'package:hr_veract/views/custom_widgets/custom_popup_dialog.dart';
 import 'package:hr_veract/views/custom_widgets/custom_search_bar.dart';

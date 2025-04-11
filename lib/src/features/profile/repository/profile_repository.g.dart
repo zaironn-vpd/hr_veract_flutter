@@ -1,28 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_login_controller.dart';
+part of 'profile_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authLoginControllerHash() =>
-    r'3a48643db3a073fe023cb493edaf329cefff530b';
+String _$profileRepositoryHash() => r'74f61cbb26904ee45dfdf3a9e7df9300b875d183';
 
-/// See also [AuthLoginController].
-@ProviderFor(AuthLoginController)
-final authLoginControllerProvider =
-    AutoDisposeAsyncNotifierProvider<AuthLoginController, void>.internal(
-      AuthLoginController.new,
-      name: r'authLoginControllerProvider',
+/// See also [ProfileRepository].
+@ProviderFor(ProfileRepository)
+final profileRepositoryProvider =
+    AutoDisposeAsyncNotifierProvider<ProfileRepository, void>.internal(
+      ProfileRepository.new,
+      name: r'profileRepositoryProvider',
       debugGetCreateSourceHash:
           const bool.fromEnvironment('dart.vm.product')
               ? null
-              : _$authLoginControllerHash,
+              : _$profileRepositoryHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$AuthLoginController = AutoDisposeAsyncNotifier<void>;
+typedef _$ProfileRepository = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
