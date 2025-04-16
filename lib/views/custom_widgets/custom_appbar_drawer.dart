@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hr_veract/src/features/auth/repository/auth_repository_impl.dart';
+import 'package:hr_veract/src/features/profile/ui/check_token.dart';
 import 'package:hr_veract/src/features/auth/repository/signOut_repository.dart';
 import 'package:hr_veract/views/custom_widgets/custom_popup_dialog.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/views/page_widget/dashboard_widget.dart';
+import 'package:hr_veract/src/features/dashboard/ui/dashboard_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class Dashboardpage extends StatefulWidget {

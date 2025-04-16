@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hr_veract/src/features/auth/repository/auth_state.dart';
 import 'package:hr_veract/src/features/auth/repository/token_repository.dart';
 import 'package:hr_veract/src/features/auth/services/auth_service.dart';

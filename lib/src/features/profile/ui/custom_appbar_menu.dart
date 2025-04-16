@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hr_veract/src/features/auth/repository/auth_state.dart';
 import 'package:hr_veract/src/features/auth/repository/token_repository.dart';
-import 'package:hr_veract/src/features/profile/repository/profile_repository.dart';
+import 'package:hr_veract/src/features/profile/ui/check_token.dart';
 
 class CustomAppbarMenu extends ConsumerWidget implements PreferredSizeWidget {
   final String appBarTitle;
@@ -10,6 +9,26 @@ class CustomAppbarMenu extends ConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // void click() {
+    //   ref.watch(checkTokenProvider.notifier).isTokenValid();
+    // }
+
+    // final tokenRepo = ref.watch(tokenRepositoryProvider);
+    // ref.listen<AsyncValue<void>>(checkTokenProvider, (prev, next) {
+    //   next.whenOrNull(
+    //     data: (_) {
+    //       if (ModalRoute.of(context)?.settings.name != '/profile') {
+    //         Navigator.pushNamed(context, '/profile');
+    //       }
+    //     },
+    //     error: (e, st) {
+    //       tokenRepo.clearToken();
+    //       Navigator.pushReplacementNamed(context, '/');
+    //     },
+    //     loading: () {},
+    //   );
+    // });
+
     return AppBar(
       centerTitle: true,
       title: Text(
@@ -37,20 +56,10 @@ class CustomAppbarMenu extends ConsumerWidget implements PreferredSizeWidget {
           padding: EdgeInsets.only(right: 15),
           child: GestureDetector(
             onTap: () {
-              final tokenRepo = ref.watch(tokenRepositoryProvider);
-
-              ref.watch(authStateControllerProvider.notifier).checkState();
-              final authState = ref.watch(authStateNotifierProvider);
-              switch (authState) {
-                case AuthState.authenticated:
-                  Navigator.pushNamed(context, '/profile');
-                case AuthState.notAuthenticated:
-                  tokenRepo.clearToken();
-                  Navigator.pushReplacementNamed(context, '/');
-                default:
-                  tokenRepo.clearToken();
-                  Navigator.pushReplacementNamed(context, '/');
-              }
+              // click();
+              // final tokenRepo = ref.watch(tokenRepositoryProvider);
+              // tokenRepo.clearToken();
+              Navigator.pushNamed(context, '/profile');
             },
             child: CircleAvatar(
               backgroundImage: AssetImage('images/profilePic.jpg'),

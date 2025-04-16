@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/views/page_widget/files_widget.dart';
+import 'package:hr_veract/src/features/201_files/ui/files_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class FilesPage extends StatefulWidget {

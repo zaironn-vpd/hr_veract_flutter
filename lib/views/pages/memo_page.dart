@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hr_veract/views/page_widget/memo_widget.dart';
+import 'package:hr_veract/src/features/memo/ui/memo_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MemoPage extends StatefulWidget {
